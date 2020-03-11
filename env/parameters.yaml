@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:testcluster/adminUser:password
+  username: kkyb123
+enableDocker: false
+pipelineUser:
+  email: kouokamkuisu123@gmail.com
+  token: vault:testcluster/pipelineUser:token
+  username: kkyb123
+prow:
+  hmacToken: vault:testcluster/prow:hmacToken

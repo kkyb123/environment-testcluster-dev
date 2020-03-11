@@ -1,38 +1,82 @@
 autoUpdate:
   enabled: false
   schedule: ""
+bootConfigURL: https://github.com/cloudbees/cloudbees-jenkins-x-boot-config.git
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: true
-  project: ""
   azure: {}
+  clusterName: testcluster
+  devEnvApprovers:
+  - kkyb123
+  environmentGitOwner: kkyb123
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: lumi-infra
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  zone: europe-west2-a
 environments:
-  - key: dev
-  - key: staging
-  - key: production
+- ingress:
+    domain: 35.242.173.39.nip.io
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+  repository: environment-testcluster-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-testcluster-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-testcluster-production
+gitops: true
 ingress:
-  domain: ""
+  domain: 35.242.173.39.nip.io
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
     production: false
 kaniko: true
+repository: nexus
 secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
     enabled: true
-    url: ""
+    url: gs://testcluster-logs-95925552-0a04-41d3-8db5-3b5878b4d376
   reports:
     enabled: true
-    url: ""
+    url: gs://testcluster-reports-fad706bc-a530-4622-8ac0-bab5205fafe
   repository:
     enabled: true
-    url: ""
+    url: gs://testcluster-repository-1c4ddb4d-ff38-46a8-b91e-eeaa1181
+vault: {}
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
   ref: 2.0.1192+cjxd.7
   url: https://github.com/cloudbees/cloudbees-jenkins-x-versions.git
