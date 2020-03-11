@@ -1,0 +1,7 @@
+dependencies:
+- host: github.com
+  owner: kkyb123
+  repo: go-jx-test
+  url: https://github.com/kkyb123/go-jx-test.git
+  version: ""
+  versionURL: ""
